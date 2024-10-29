@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.20;
 
-import  "forge-std/Test.sol";
+import "forge-std/Test.sol";
 import "../src/HelloWorld.sol";
 
 contract HelloWorldTest is Test {
@@ -12,8 +12,6 @@ contract HelloWorldTest is Test {
     }
 
     function testGreet() public {
-        assertEq(
-            helloWorld.greet(), 
-            "Hello World!");
+        assertEq(helloWorld.greet(), "Hello World!");
     }
 }
