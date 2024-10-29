@@ -64,3 +64,18 @@ $ forge --help
 $ anvil --help
 $ cast --help
 ```
+
+// MINE:
+
+### solmate
+
+```shell
+**to install other lib, use forge install**
+forge install rari-capital/solmate
+**to update**
+forge update lib/solmate
+**to remove**
+forge remove solmate
+**to check lib installed**
+forge remappings
+```
