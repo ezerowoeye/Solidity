@@ -7,4 +7,4 @@ contract Token is ERC20("name", "symbol", 18) {}
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract TextOz is Ownable {}
+abstract contract TextOz is Ownable {}

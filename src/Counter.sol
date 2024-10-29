@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.20;
+pragma solidity ^0.8.20;
+
+// remove console import before deploying contract
+// import "forge-std/console.sol";
 
 contract Counter {
     uint256 public count;
@@ -11,6 +14,8 @@ contract Counter {
 
     // Function to increment count by 1
     function inc() public {
+        // remove console.log before deploying contract
+        // console.log("HERE", count);
         count += 1;
     }
 
