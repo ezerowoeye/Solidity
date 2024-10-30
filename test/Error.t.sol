@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.20;
+pragma solidity 0.8.28;
 
 import "forge-std/Test.sol";
 import {Error} from "../src/Error.sol";
@@ -35,7 +35,7 @@ contract ErrorTest is Test {
         assertEq(uint256(1), uint256(1), "test 1");
         assertEq(uint256(1), uint256(1), "test 2");
         assertEq(uint256(1), uint256(1), "test 3");
-        assertEq(uint256(1), uint256(1), "test 4");
+        assertEq(uint256(1), uint256(2), "test 4");
         assertEq(uint256(1), uint256(1), "test 5");
     }
 }

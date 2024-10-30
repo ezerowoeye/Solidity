@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.20;
+pragma solidity 0.8.28;
 
 import "forge-std/Test.sol";
 import {Event} from "../src/Event.sol";
@@ -26,16 +26,18 @@ contract EventTest is Test {
         // 1. Tell Foundry which data to check
         // Check index 1, index 2 and data
         vm.expectEmit(true, true, false, true);
+
         // 2. Emit the expected event
         emit Transfer(address(this), address(123), 456);
+
         // 3. Call the function that should emit the event
         e.transfer(address(this), address(123), 456);
 
-        // Check only index 1
+    //     // Check only index 1
         vm.expectEmit(true, false, false, false);
         emit Transfer(address(this), address(123), 456);
-        // NOTE: index 2 and data (amount) doesn't match
-        //       but the test will still pass
+    //     // NOTE: index 2 and data (amount) doesn't match
+    //     //       but the test will still pass
         e.transfer(address(this), address(111), 222);
     }
 

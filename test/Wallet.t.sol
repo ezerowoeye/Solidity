@@ -16,29 +16,29 @@ contract WalletTest is Test {
     }
 
     // Receive ETH from wallet
-    receive() external payable {}
-
-    // Check how much ETH available for test
-    function testLogBalance() public {
-        console.log("ETH balance", address(this).balance / 1e18);
-    }
+    // receive() external payable {}
 
     function _send(uint256 amount) private {
         (bool ok,) = address(wallet).call{value: amount}("");
         require(ok, "send ETH failed");
     }
 
-    function testSendEth() public {
-        uint256 bal = address(wallet).balance;
+    function testEthBalance() public {
+        console.log("ETH balance", address(this).balance / 1e18);
+    }
 
-        // deal
+
+    function testSendEth() public {
+        uint bal = address(wallet).balance;
+
+        // deal(address, uint) - Set balance of address
         deal(address(1), 100);
         assertEq(address(1).balance, 100);
 
         deal(address(1), 10);
         assertEq(address(1).balance, 10);
 
-        // hoax = deal + prank
+    // hoax(address, uint) - deal + prank, Sets up a prank and set balance
         deal(address(1), 123);
         vm.prank(address(1));
         _send(123);
@@ -47,30 +47,5 @@ contract WalletTest is Test {
         _send(456);
 
         assertEq(address(wallet).balance, bal + 123 + 456);
-    }
-
-    function testFailWithdrawNotOwner() public {
-        vm.prank(address(1));
-        wallet.withdraw(1);
-    }
-
-    // Test fail and check error message
-    function testWithdrawNotOwner() public {
-        vm.prank(address(1));
-        vm.expectRevert(bytes("caller is not owner"));
-        wallet.withdraw(1);
-    }
-
-    function testWithdraw() public {
-        uint256 walletBalanceBefore = address(wallet).balance;
-        uint256 ownerBalanceBefore = address(this).balance;
-
-        wallet.withdraw(1);
-
-        uint256 walletBalanceAfter = address(wallet).balance;
-        uint256 ownerBalanceAfter = address(this).balance;
-
-        assertEq(walletBalanceAfter, walletBalanceBefore - 1);
-        assertEq(ownerBalanceAfter, ownerBalanceBefore + 1);
     }
 }

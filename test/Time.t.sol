@@ -1,4 +1,5 @@
-pragma solidity 0.8.20;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.28;
 
 import "forge-std/Test.sol";
 import {Auction} from "../src/Time.sol";
@@ -40,8 +41,8 @@ contract TimeTest is Test {
         assertEq(block.timestamp, t + 100);
 
         // set block.timestamp to t + 100 - 100;
-        rewind(100);
-        assertEq(block.timestamp, t);
+        rewind(10);
+        assertEq(block.timestamp, t + 100 - 10);
     }
 
     function testBlockNumber() public {
